@@ -1,14 +1,11 @@
 package co.edu.unipamplona.ciadti.rap.services.util;
 
-import co.edu.unipamplona.ciadti.rap.services.util.comparator.PropertyComparator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.extern.log4j.Log4j2;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Log4j2
 public class Trace {
-    static Logger log = LoggerFactory.getLogger( PropertyComparator.class );
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";

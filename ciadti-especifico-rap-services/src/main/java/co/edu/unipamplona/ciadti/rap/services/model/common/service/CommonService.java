@@ -1,4 +1,4 @@
-package co.edu.unipamplona.ciadti.rap.services.model.general.service;
+package co.edu.unipamplona.ciadti.rap.services.model.common.service;
 
 import co.edu.unipamplona.ciadti.rap.services.exception.RapException;
 

@@ -1,11 +1,14 @@
 package co.edu.unipamplona.ciadti.rap.services.util;
 
+import co.edu.unipamplona.ciadti.rap.services.config.mimeTypes.MimeTypesConfig;
 import co.edu.unipamplona.ciadti.rap.services.exception.RapException;
 import co.edu.unipamplona.ciadti.rap.services.util.constant.Time;
+import org.springframework.boot.web.server.MimeMappings;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import java.lang.reflect.Field;
@@ -120,6 +123,21 @@ public class Methods {
     }
 
     /**
+     * Obtiene el tipo de contenido de un archivo que viene definido con su tipo,
+     * por ejemplo, miArchivo.pdf para el cual debería retornar algo como "application/pdf"
+     * */
+    public static MediaType getContentType(String filename){
+        MimeMappings mimeMappings = MimeTypesConfig.mimeMappings();
+        String extension = filename.substring(filename.lastIndexOf(".") + 1);
+        String contentType = mimeMappings.get(extension);
+        if (contentType == null) {
+            contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE; // Tipo de contenido genérico
+        }
+        MediaType mediaType = MediaType.parseMediaType(contentType);
+        return mediaType;
+    }
+
+    /**
      * Genera de manera aleatoria una cadena de texto de una longitud dada (esto es considerada como una contraseña)
     * */
     public static String generatePassword(int size) throws RapException{
@@ -223,5 +241,34 @@ public class Methods {
             return -1L;
         }
         return (initDate.getTime() - endDate.getTime())/ time.getValue();
+    }
+
+    /**
+     * Convierte un String a booleano
+     * */
+    public static boolean convertToBoolean(String s) {
+        s = s.toUpperCase();
+        if (s.equals("0") || s.equals("NO") || s.equals("FALSE") || s.isBlank()){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Convierte un String a año, removiendo los caracteres que no sean números, por ejemplo, los puntos, espacios y comas.
+     */
+    public static Long convertToYear(String s) {
+        Objects.requireNonNull(s, "No se admite un valor null");
+        s = s.replaceAll("[.,\\s]", "");
+        return Long.parseLong(s);
+    }
+
+    /**
+     * Convierte un String a documento, removiendo los caracteres que no sean números, por ejemplo, los puntos, espacios y comas.
+     */
+    public static String convertToDocument(String s) {
+        Objects.requireNonNull(s, "No se admite un valor null");
+        s = s.replaceAll("[.,'\\s]", "");
+        return s;
     }
 }

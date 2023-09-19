@@ -1,9 +1,9 @@
 package co.edu.unipamplona.ciadti.rap.services.config.email;
 
-import co.edu.unipamplona.ciadti.rap.services.model.general.dto.ArchivoDTO;
+import co.edu.unipamplona.ciadti.rap.services.model.common.dto.ArchivoDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,12 +17,11 @@ import java.util.Date;
 import java.util.concurrent.CompletableFuture;
 
 @Service
+@RequiredArgsConstructor
 public class MailService {
-    @Autowired
-    private JavaMailSender mailSender;
 
-    @Autowired
-    private SpringTemplateEngine templateEngine;
+    private final JavaMailSender mailSender;
+    private final SpringTemplateEngine templateEngine;
 
     /**
      * Envía un email básico con un arreglo de archivos anexos o sin ningún archivo anexo.

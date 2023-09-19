@@ -1,4 +1,4 @@
-package co.edu.unipamplona.ciadti.rap.services.model.general.dto;
+package co.edu.unipamplona.ciadti.rap.services.model.common.dto;
 
 import lombok.*;
 
