@@ -17,6 +17,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.1</spring-cloud.version>
+		<spring-boot-admin.version>3.0.3</spring-boot-admin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -120,6 +121,20 @@
 		</dependency>
 		<!-- End -->
 
+		<!-- ACTUATOR -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- End -->
+
+		<!-- ADMIN SPRING BOOT -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+		</dependency>
+		<!-- End -->
+
 		<!-- DATATABLES -->
 		<dependency>
 			<groupId>com.github.darrachequesne</groupId>
@@ -150,6 +165,13 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>de.codecentric</groupId>
+				<artifactId>spring-boot-admin-dependencies</artifactId>
+				<version>${spring-boot-admin.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
